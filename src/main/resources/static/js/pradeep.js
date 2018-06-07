@@ -1,5 +1,5 @@
 $( document ).ready( main );
-   alert("jquery loaded")
+
 function main() {
 
     $('.btn-collapse').click(function(e) {
