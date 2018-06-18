@@ -2,8 +2,10 @@ package com.pradeep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories(basePackages = "com.pradeep.backend.persistence.repositories")
 public class PradeepApplication {
 
 	public static void main(String[] args) {

@@ -23,6 +23,8 @@ public class User {
 
     private String username;
 
+    private String password;
+
     private String email;
 
     @Column(name = "first_name")
@@ -78,6 +80,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
