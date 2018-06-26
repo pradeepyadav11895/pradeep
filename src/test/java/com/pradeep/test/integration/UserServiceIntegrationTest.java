@@ -7,7 +7,7 @@ import com.pradeep.backend.persistence.domain.backend.UserRole;
 import com.pradeep.backend.service.UserService;
 import com.pradeep.enums.PlansEnum;
 import com.pradeep.enums.RolesEnum;
-import com.pradeep.utils.UsersUtils;
+import com.pradeep.utils.UserUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +27,7 @@ public class UserServiceIntegrationTest {
     @Test
     public void testCreateNewUser() throws Exception{
        Set<UserRole> userRoles=new HashSet<>();
-       User basicUser=UsersUtils.createBasicUSer();
+       User basicUser=UserUtils.createBasicUSer();
        userRoles.add(new UserRole(basicUser,new Role(RolesEnum.BASIC)));
        User user=userService.createUser(basicUser,PlansEnum.BASIC,userRoles);
            Assert.assertNotNull(user);

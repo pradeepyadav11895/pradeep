@@ -2,16 +2,16 @@ package com.pradeep.utils;
 
 import com.pradeep.backend.persistence.domain.backend.User;
 
-public class UsersUtils {
+public class UserUtils {
 
-    private UsersUtils(){
+    private UserUtils(){
         throw new AssertionError("Non instantiable");
     }
 
     public  static User createBasicUSer(){
         User user=new User();
         user.setUsername("basicUser");
-        user.setPassword("secret");
+        user.setPassword("$2a$10$MUC.KW6DRVxP8IVqAKvp4evyXts07i3sGde0LhXv0v2kbDLUdMtEy"); // secret is password
         user.setEmail("abc@gmail.com");
         user.setFirstName("Pradeep");
         user.setLastName("yadav");

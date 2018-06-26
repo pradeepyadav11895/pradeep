@@ -6,14 +6,13 @@ import com.pradeep.backend.persistence.domain.backend.UserRole;
 import com.pradeep.backend.service.UserService;
 import com.pradeep.enums.PlansEnum;
 import com.pradeep.enums.RolesEnum;
-import com.pradeep.utils.UsersUtils;
+import com.pradeep.utils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,10 +32,10 @@ public class PradeepApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user=UsersUtils.createBasicUSer();
+		User user=UserUtils.createBasicUSer();
 		Set<UserRole> userRoles=new HashSet<>();
-		userRoles.add(new UserRole(user,new Role(RolesEnum.BASIC)));
-		LOG.debug("creating user with userName{}",user.getUsername());
+		userRoles.add(new UserRole(user,new Role(RolesEnum.PRO)));
+		LOG.debug("creating user with userName {}",user.getUsername());
 		userService.createUser(user,PlansEnum.PRO,userRoles);
 		LOG.info("User {} created",user.getUsername());
 	}

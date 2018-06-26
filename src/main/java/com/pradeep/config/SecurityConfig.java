@@ -1,5 +1,6 @@
 package com.pradeep.config;
 
+import com.pradeep.backend.service.UserSecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -16,6 +17,9 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UserSecurityService userSecurityService;
 
     @Autowired
     private Environment env;
@@ -56,10 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .inMemoryAuthentication()
+               /* .inMemoryAuthentication()
                 .withUser("user").password("$2a$10$YDdBL8v9M3X4qIx3KMww7eF8dYzv18oPOThnrirKl6bdPsWztj6ru").roles("USER")
                 .and()
-                .passwordEncoder(new BCryptPasswordEncoder());
+                .passwordEncoder(new BCryptPasswordEncoder());*/
+               .userDetailsService(userSecurityService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 

@@ -5,6 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class bcript {
 
     public static  void main(String args[]){
-        System.out.println("enc-- "+new BCryptPasswordEncoder().encode("password"));
+        System.out.println("enc-- "+new BCryptPasswordEncoder().encode("secret"));
     }
 }
