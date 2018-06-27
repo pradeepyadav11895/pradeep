@@ -10,6 +10,7 @@ import com.pradeep.utils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,17 +27,29 @@ public class PradeepApplication implements CommandLineRunner {
 	@Autowired
 	private UserService userService;
 
+	@Value("${webmaster.username}")
+	private String webmasterUsername;
+
+	@Value("${webmaster.password}")
+	private String webmasterPassword;
+
+	@Value("${webmaster.email}")
+	private String webmasterEmail;
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(PradeepApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		String username="proUser";
-		String email="prouser@gmail.com";
-		User user=UserUtils.createBasicUSer(username,email);
+
+
+
+		User user=UserUtils.createBasicUSer(webmasterUsername,webmasterEmail);
+		user.setPassword(webmasterPassword);
 		Set<UserRole> userRoles=new HashSet<>();
-		userRoles.add(new UserRole(user,new Role(RolesEnum.PRO)));
+		userRoles.add(new UserRole(user,new Role(RolesEnum.ADMIN)));
 		LOG.debug("creating user with userName {}",user.getUsername());
 		userService.createUser(user,PlansEnum.PRO,userRoles);
 		LOG.info("User {} created",user.getUsername());
