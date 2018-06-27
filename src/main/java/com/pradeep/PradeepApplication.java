@@ -32,7 +32,9 @@ public class PradeepApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		User user=UserUtils.createBasicUSer();
+		String username="proUser";
+		String email="prouser@gmail.com";
+		User user=UserUtils.createBasicUSer(username,email);
 		Set<UserRole> userRoles=new HashSet<>();
 		userRoles.add(new UserRole(user,new Role(RolesEnum.PRO)));
 		LOG.debug("creating user with userName {}",user.getUsername());
