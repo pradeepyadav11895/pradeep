@@ -25,10 +25,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = PradeepApplication.class)
-public class UserIntegrationTest extends AbstractIntegrationTest{
+public class UserRepositoryIntegrationTest extends AbstractIntegrationTest{
 
 
 
@@ -99,5 +100,26 @@ public class UserIntegrationTest extends AbstractIntegrationTest{
         userRepository.deleteById(basicUser.getId());
     }
 
+    public void testGetUserByEmail() throws Exception{
+        User user=createUser(testName);
+
+        User newlyFounduser=userRepository.findByEmail(user.getEmail());
+        Assert.assertNotNull(newlyFounduser);
+        Assert.assertNotNull(newlyFounduser.getId());
+    }
+
+    @Test
+    public  void testUpdateUserPassword() throws Exception{
+        Optional<User> user=Optional.ofNullable(createUser(testName));
+        Assert.assertNotNull(user);
+        Assert.assertNotNull(user.get().getId());
+
+        String newPassword=UUID.randomUUID().toString();
+
+        userRepository.updateUserPassword(user.get().getId(),newPassword);
+
+        user=userRepository.findById(user.get().getId());
+        Assert.assertEquals(newPassword,user.get().getPassword());
+    }
 
 }
