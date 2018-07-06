@@ -32,6 +32,7 @@ public class UserServiceIntegrationTest  extends AbstractServiceIntegrationTest{
            User user = createUser(testName);
            Assert.assertNotNull(user);
            Assert.assertNotNull(user.getId());
+           // cooemnt
 
     }
 
