@@ -1,6 +1,6 @@
 package com.pradeep;
 
-import com.pradeep.web.i18n.I18NService;
+import com.pradeep.backend.service.I18NService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

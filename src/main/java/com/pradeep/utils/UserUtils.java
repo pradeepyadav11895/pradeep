@@ -1,6 +1,9 @@
 package com.pradeep.utils;
 
 import com.pradeep.backend.persistence.domain.backend.User;
+import com.pradeep.web.controllers.ForgotMyPasswordController;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class UserUtils {
 
@@ -24,4 +27,20 @@ public class UserUtils {
     }
 
 
+    public static String createPasswordResetUrl(HttpServletRequest request, long userId, String token) {
+        String passwordResultUrl=
+                request.getScheme() +
+                        "://" +
+                        request.getServerName() +
+                        ":" +
+                        request.getServerPort() +
+                        request.getContextPath() +
+                        ForgotMyPasswordController.CHANGE_PASSWORD_PATH +
+                        "?id=" +
+                        userId +
+                        "&token=" +
+                        token;
+        return  passwordResultUrl;
+
+    }
 }
