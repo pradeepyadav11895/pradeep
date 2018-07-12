@@ -3,6 +3,7 @@ package com.pradeep;
 import com.pradeep.backend.persistence.domain.backend.Role;
 import com.pradeep.backend.persistence.domain.backend.User;
 import com.pradeep.backend.persistence.domain.backend.UserRole;
+import com.pradeep.backend.service.PlanService;
 import com.pradeep.backend.service.UserService;
 import com.pradeep.enums.PlansEnum;
 import com.pradeep.enums.RolesEnum;
@@ -27,6 +28,9 @@ public class PradeepApplication implements CommandLineRunner {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private PlanService planService;
+
 	@Value("${webmaster.username}")
 	private String webmasterUsername;
 
@@ -44,7 +48,9 @@ public class PradeepApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-
+		LOG.info("Creating Basic and Pro plans in the database...");
+		planService.createPlan(PlansEnum.BASIC.getId());
+		planService.createPlan(PlansEnum.PRO.getId());
 
 		User user=UserUtils.createBasicUSer(webmasterUsername,webmasterEmail);
 		user.setPassword(webmasterPassword);
